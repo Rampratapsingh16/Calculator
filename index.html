@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="center-align">Calculator</h1>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="number" id="num1" class="validate" required>
+            <label for="num1">First Number</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="number" id="num2" class="validate" required>
+            <label for="num2">Second Number</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select id="operation">
+              <option value="+" selected>Addition</option>
+              <option value="-">Subtraction</option>
+              <option value="*">Multiplication</option>
+              <option value="/"">Division</option>
+            </select>
+            <label>Operation</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 center-align">
+            <button class="btn waves-effect waves-light" type="button" onclick="calculateResult()">
+              Calculate
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" id="result" readonly>
+            <label for="result">Result</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects);
+    });
+
+    function calculateResult() {
+      var num1 = parseFloat(document.getElementById('num1').value);
+      var num2 = parseFloat(document.getElementById('num2').value);
+      var operation = document.getElementById('operation').value;
+      var result;
+
+      switch (operation) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          result = num1 / num2;
+          break;
+        default:
+          result = 'Invalid operation';
+      }
+
+      document.getElementById('result').value = result;
+    }
+  </script>
+</body>
+</html>
